@@ -51,7 +51,7 @@ let del=()=>{
 }
 let add=()=>{
     console.log(`add ${number1} + ${number2}`)
-    if(number1+number2>max1 || number1+number2<max1){
+    if(number1+number2>max1 || number1+number2<max2){
         alert("Number is to high!")
         clear();
     }else{
