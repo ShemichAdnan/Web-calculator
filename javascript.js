@@ -96,7 +96,13 @@ let percentage=()=>{
         operator='';
     }
 }
-
+let addDot=()=>{
+    if(input.textContent.includes('.')){
+        return;
+    }else{
+        input.textContent+=".";
+    }
+}
 let operate=(op)=>{
     console.log("radi")
     
@@ -158,3 +164,4 @@ equal.addEventListener("click",()=>operate('='));
 asterisk.addEventListener("click",()=>operate('*'));
 slash.addEventListener("click",()=>operate('/'));
 percent.addEventListener("click",()=>operate('%'));
+dot.addEventListener("click",addDot);
