@@ -2,11 +2,7 @@ body{
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
 }
-h1{
-    margin: 0;
-    text-align: center;
-    margin: 50px 0px;
-}
+
 p{
     margin: 0;
     padding: 0;
@@ -20,7 +16,7 @@ p{
     width: 100%;
     max-width: 350px;
     min-width: 350px;
-    margin: auto;
+    margin: 40px auto;
     border-radius: 20px;
     padding: 10px;
     box-shadow: 5px 7px 15px rgb(3, 4, 7);

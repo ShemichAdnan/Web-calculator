@@ -24,17 +24,20 @@ const equal=document.querySelector("#equal");
 let input=document.querySelector("#input h2");
 let calculate=document.querySelector("#calculate h2");
 
-let max=999999999;
-zero.addEventListener("click",()=>{if(input.textContent<max) input.textContent+="0"});
-one.addEventListener("click",()=>{if(input.textContent<max) input.textContent+="1"});
-two.addEventListener("click",()=>{if(input.textContent<max) input.textContent+="2"});
-three.addEventListener("click",()=>{if(input.textContent<max) input.textContent+="3"});
-four.addEventListener("click",()=>{if(input.textContent<max) input.textContent+="4"});
-five.addEventListener("click",()=>{if(input.textContent<max) input.textContent+="5"});
-six.addEventListener("click",()=>{if(input.textContent<max) input.textContent+="6"});
-seven.addEventListener("click",()=>{if(input.textContent<max) input.textContent+="7"});
-eight.addEventListener("click",()=>{if(input.textContent<max) input.textContent+="8"});
-nine.addEventListener("click",()=>{if(input.textContent<max) input.textContent+="9"});
+let max=10;
+let max1=9999999999;
+let max2=-999999999;
+let temp="";
+zero.addEventListener("click",()=>{if(input.textContent.length<max) input.textContent+="0"});
+one.addEventListener("click",()=>{if(input.textContent.length<max) input.textContent+="1"});
+two.addEventListener("click",()=>{if(input.textContent.length<max) input.textContent+="2"});
+three.addEventListener("click",()=>{if(input.textContent.length<max) input.textContent+="3"});
+four.addEventListener("click",()=>{if(input.textContent.length<max) input.textContent+="4"});
+five.addEventListener("click",()=>{if(input.textContent.length<max) input.textContent+="5"});
+six.addEventListener("click",()=>{if(input.textContent.length<max) input.textContent+="6"});
+seven.addEventListener("click",()=>{if(input.textContent.length<max) input.textContent+="7"});
+eight.addEventListener("click",()=>{if(input.textContent.length<max) input.textContent+="8"});
+nine.addEventListener("click",()=>{if(input.textContent.length<max) input.textContent+="9"});
 
 let clear=()=>{
     input.textContent='';
@@ -48,11 +51,16 @@ let del=()=>{
 }
 let add=()=>{
     console.log(`add ${number1} + ${number2}`)
-    if(number1+number2>max){
+    if(number1+number2>max1 || number1+number2<max1){
         alert("Number is to high!")
         clear();
     }else{
-        input.textContent=number1+number2;
+        if((number1+number2).toString().length>max){
+            temp=(number1+number2).toString().slice(0,10)
+            input.textContent=+temp;
+        }else{
+            input.textContent=number1+number2;
+        }
         number1='';
         number2='';
         operator='';
@@ -60,18 +68,33 @@ let add=()=>{
 }
 let subtract=()=>{
     console.log(`subtract ${number1} - ${number2}`)
-    input.textContent=number1-number2;
-    number1='';
-    number2='';
-    operator='';
-}
-let multiply=()=>{
-    console.log(`multiply ${number1} * ${number2}`)
-    if(number1*number2>max){
+    if(number1-number2>max1 || number1-number2<max2){
         alert("Number is to high!")
         clear();
     }else{
-        input.textContent=number1*number2;
+        if((number1-number2).toString().length>max){
+            temp=(number1-number2).toString().slice(0,10)
+            input.textContent=+temp;
+        }else{
+            input.textContent=number1-number2;
+        }
+        number1='';
+        number2='';
+        operator='';
+    }
+}
+let multiply=()=>{
+    console.log(`multiply ${number1} * ${number2}`)
+    if(number1*number2>max1 || number1*number2<max2){
+        alert("Number is to high!")
+        clear();
+    }else{
+        if((number1*number2).toString().length>max){
+            temp=(number1*number2).toString().slice(0,10)
+            input.textContent=+temp;
+        }else{
+            input.textContent=number1*number2;
+        }
         number1='';
         number2='';
         operator='';
@@ -79,18 +102,33 @@ let multiply=()=>{
 }
 let divide=()=>{
     console.log(`devide ${number1} / ${number2}`)
-    input.textContent=number1/number2;
-    number1='';
-    number2='';
-    operator='';
-}
-let percentage=()=>{
-    console.log(`percentage ${number1} % ${number2}`)
-    if(number1/100*number2>max){
+    if(number1/number2>max1 || number1/number2<max2){
         alert("Number is to high!")
         clear();
     }else{
-        input.textContent=number1/100*number2;
+        if((number1/number2).toString().length>max){
+            temp=(number1/number2).toString().slice(0,10);
+            input.textContent=+temp;
+        }else{
+            input.textContent=number1/number2;
+        }
+        number1='';
+        number2='';
+        operator='';  
+    }
+}
+let percentage=()=>{
+    console.log(`percentage ${number1} % ${number2}`)
+    if(number1/100*number2>max1 || number1/100*number2<max2){
+        alert("Number is to high!")
+        clear();
+    }else{
+        if((number1/100*number2).toString().length>max){
+            temp=(number1/100*number2).toString().slice(0,10);
+            input.textContent=+temp;
+        }else{
+            input.textContent=number1/100*number2;
+        }
         number1='';
         number2='';
         operator='';
