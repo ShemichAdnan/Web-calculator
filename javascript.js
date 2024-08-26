@@ -1,4 +1,4 @@
-let number1;
+let number1='';
 let number2;
 let operator;
 const c=document.querySelector("#c");
@@ -21,10 +21,10 @@ const zero=document.querySelector("#zero");
 const dot=document.querySelector("#dot");
 const equal=document.querySelector("#equal");
 
-let input=document.querySelector("#input");
-let calculate=document.querySelector("#calculate");
+let input=document.querySelector("#input h2");
+let calculate=document.querySelector("#calculate h2");
 
-let max=99999999999;
+let max=999999999;
 zero.addEventListener("click",()=>{if(input.textContent<max) input.textContent+="0"});
 one.addEventListener("click",()=>{if(input.textContent<max) input.textContent+="1"});
 two.addEventListener("click",()=>{if(input.textContent<max) input.textContent+="2"});
@@ -46,5 +46,40 @@ let clear=()=>{
 let del=()=>{
     input.textContent=input.textContent.slice(0,input.textContent.length-1)
 }
+let add=()=>{
+    console.log(`add ${number1} + ${number2}`)
+    input.textContent=number1+number2;
+    number1='';
+    number2='';
+    operator='';
+}
+let operate=(op)=>{
+    console.log("radi")
+    
+    if(number1==''){
+        console.log("prvi")
+        number1=+input.textContent;
+        input.textContent='';
+        operator=op;
+        calculate.textContent=number1+" "+operator;
+    }else{
+        console.log("drugi")
+        number2=+input.textContent;
+
+        if(operator=='+'){
+            add();
+            if(op!='='){
+                operate(op);
+            }else{
+                calculate.textContent='';
+            }
+        }
+        
+    }
+    console.log(number1)
+    console.log(operator)
+}
 c.addEventListener("click",clear);
 d.addEventListener("click",del);
+plus.addEventListener("click",()=>operate('+'));
+equal.addEventListener("click",()=>operate('='))
