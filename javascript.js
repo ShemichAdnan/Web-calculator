@@ -48,15 +48,47 @@ let del=()=>{
 }
 let add=()=>{
     console.log(`add ${number1} + ${number2}`)
-    input.textContent=number1+number2;
+    if(number1+number2>max){
+        alert("Number is to high!")
+        clear();
+    }else{
+        input.textContent=number1+number2;
+        number1='';
+        number2='';
+        operator='';
+    }
+}
+let subtract=()=>{
+    console.log(`subtract ${number1} - ${number2}`)
+    input.textContent=number1-number2;
     number1='';
     number2='';
     operator='';
 }
+let multiply=()=>{
+    console.log(`multiply ${number1} * ${number2}`)
+    if(number1*number2>max){
+        alert("Number is to high!")
+        clear();
+    }else{
+        input.textContent=number1*number2;
+        number1='';
+        number2='';
+        operator='';
+    }
+}
+let divide=()=>{
+    console.log(`devide ${number1} / ${number2}`)
+    input.textContent=number1/number2;
+    number1='';
+    number2='';
+    operator='';
+}
+
 let operate=(op)=>{
     console.log("radi")
     
-    if(number1==''){
+    if(number1=='' && op!='='){
         console.log("prvi")
         number1=+input.textContent;
         input.textContent='';
@@ -73,6 +105,27 @@ let operate=(op)=>{
             }else{
                 calculate.textContent='';
             }
+        }else if(operator=='-'){
+            subtract();
+            if(op!='='){
+                operate(op);
+            }else{
+                calculate.textContent='';
+            }
+        }else if(operator=='*'){
+            multiply();
+            if(op!='='){
+                operate(op);
+            }else{
+                calculate.textContent='';
+            }
+        }else if(operator=='/'){
+            divide();
+            if(op!='='){
+                operate(op);
+            }else{
+                calculate.textContent='';
+            }
         }
         
     }
@@ -82,4 +135,7 @@ let operate=(op)=>{
 c.addEventListener("click",clear);
 d.addEventListener("click",del);
 plus.addEventListener("click",()=>operate('+'));
-equal.addEventListener("click",()=>operate('='))
+minus.addEventListener("click",()=>operate('-'))
+equal.addEventListener("click",()=>operate('='));
+asterisk.addEventListener("click",()=>operate('*'));
+slash.addEventListener("click",()=>operate('/'));
