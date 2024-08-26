@@ -84,6 +84,18 @@ let divide=()=>{
     number2='';
     operator='';
 }
+let percentage=()=>{
+    console.log(`percentage ${number1} % ${number2}`)
+    if(number1/100*number2>max){
+        alert("Number is to high!")
+        clear();
+    }else{
+        input.textContent=number1/100*number2;
+        number1='';
+        number2='';
+        operator='';
+    }
+}
 
 let operate=(op)=>{
     console.log("radi")
@@ -126,8 +138,14 @@ let operate=(op)=>{
             }else{
                 calculate.textContent='';
             }
+        }else if(operator=='%'){
+            percentage();
+            if(op!='='){
+                operate(op);
+            }else{
+                calculate.textContent='';
+            }
         }
-        
     }
     console.log(number1)
     console.log(operator)
@@ -139,3 +157,4 @@ minus.addEventListener("click",()=>operate('-'))
 equal.addEventListener("click",()=>operate('='));
 asterisk.addEventListener("click",()=>operate('*'));
 slash.addEventListener("click",()=>operate('/'));
+percent.addEventListener("click",()=>operate('%'));
