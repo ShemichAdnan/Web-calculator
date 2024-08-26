@@ -103,17 +103,13 @@ let addDot=()=>{
         input.textContent+=".";
     }
 }
-let operate=(op)=>{
-    console.log("radi")
-    
+let operate=(op)=>{   
     if(number1=='' && op!='='){
-        console.log("prvi")
         number1=+input.textContent;
         input.textContent='';
         operator=op;
         calculate.textContent=number1+" "+operator;
     }else{
-        console.log("drugi")
         number2=+input.textContent;
 
         if(operator=='+'){
@@ -153,8 +149,6 @@ let operate=(op)=>{
             }
         }
     }
-    console.log(number1)
-    console.log(operator)
 }
 c.addEventListener("click",clear);
 d.addEventListener("click",del);
