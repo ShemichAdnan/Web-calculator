@@ -1,5 +1,5 @@
-let number1='';
-let number2;
+let number1="";
+let number2="";
 let operator;
 const c=document.querySelector("#c");
 const d=document.querySelector("#del");
@@ -28,27 +28,71 @@ let max=10;
 let max1=9999999999;
 let max2=-999999999;
 let temp="";
-zero.addEventListener("click",()=>{if(input.textContent.length<max) input.textContent+="0"});
-one.addEventListener("click",()=>{if(input.textContent.length<max) input.textContent+="1"});
-two.addEventListener("click",()=>{if(input.textContent.length<max) input.textContent+="2"});
-three.addEventListener("click",()=>{if(input.textContent.length<max) input.textContent+="3"});
-four.addEventListener("click",()=>{if(input.textContent.length<max) input.textContent+="4"});
-five.addEventListener("click",()=>{if(input.textContent.length<max) input.textContent+="5"});
-six.addEventListener("click",()=>{if(input.textContent.length<max) input.textContent+="6"});
-seven.addEventListener("click",()=>{if(input.textContent.length<max) input.textContent+="7"});
-eight.addEventListener("click",()=>{if(input.textContent.length<max) input.textContent+="8"});
-nine.addEventListener("click",()=>{if(input.textContent.length<max) input.textContent+="9"});
+zero.addEventListener("click",()=>{InputNumber(zero.textContent)});
+one.addEventListener("click",()=>{InputNumber(one.textContent)});
+two.addEventListener("click",()=>{InputNumber(two.textContent)});
+three.addEventListener("click",()=>{InputNumber(three.textContent)});
+four.addEventListener("click",()=>{InputNumber(four.textContent)});
+five.addEventListener("click",()=>{InputNumber(five.textContent)});
+six.addEventListener("click",()=>{InputNumber(six.textContent)});
+seven.addEventListener("click",()=>{InputNumber(seven.textContent)});
+eight.addEventListener("click",()=>{InputNumber(eight.textContent)});
+nine.addEventListener("click",()=>{InputNumber(nine.textContent)});
 
-let clear=()=>{
-    input.textContent='';
-    calculate.textContent='';
-    operator='';
-    number1='';
-    number2='';
+let maxc=15;
+let max0=999999999999999;
+let min=-99999999999999;
+let op;
+let tempOperator;
+
+let ProvjeraDuzine=()=>{
+    if(input.textContent.length>9){
+        input.style.fontSize = "35px";
+    }else{
+        input.style.fontSize="40px";
+    }
 };
-let del=()=>{
+let Clear=()=>{
+    input.textContent="";
+    calculate.textContent="";
+    op="";
+    number1="";
+    number2="";
+    tempOperator="";
+};
+let Del=()=>{
     input.textContent=input.textContent.slice(0,input.textContent.length-1)
+    ProvjeraDuzine();
+};
+let InputNumber=(c)=>{
+    if(input.textContent.length<maxc){
+        input.textContent+=c;
+        ProvjeraDuzine();
+    }
+};
+let addDot=()=>{
+    if(input.textContent.includes('.')){
+        return;
+    }else{
+        if(input.textContent.length==0){
+            input.textContent+="0";
+        }
+        input.textContent+=".";
+        ProvjeraDuzine();
+    }
 }
+
+c.addEventListener("click",Clear);
+d.addEventListener("click",Del);
+plus.addEventListener("click",()=>operate('+'));
+minus.addEventListener("click",()=>operate('-'))
+equal.addEventListener("click",()=>operate('='));
+asterisk.addEventListener("click",()=>operate('*'));
+slash.addEventListener("click",()=>operate('/'));
+percent.addEventListener("click",()=>operate('%'));
+dot.addEventListener("click",addDot);
+
+
 let add=()=>{
     console.log(`add ${number1} + ${number2}`)
     if(number1+number2>max1 || number1+number2<max2){
@@ -134,13 +178,7 @@ let percentage=()=>{
         operator='';
     }
 }
-let addDot=()=>{
-    if(input.textContent.includes('.')){
-        return;
-    }else{
-        input.textContent+=".";
-    }
-}
+
 let operate=(op)=>{   
     if(number1=='' && op!='='){
         number1=+input.textContent;
@@ -188,12 +226,3 @@ let operate=(op)=>{
         }
     }
 }
-c.addEventListener("click",clear);
-d.addEventListener("click",del);
-plus.addEventListener("click",()=>operate('+'));
-minus.addEventListener("click",()=>operate('-'))
-equal.addEventListener("click",()=>operate('='));
-asterisk.addEventListener("click",()=>operate('*'));
-slash.addEventListener("click",()=>operate('/'));
-percent.addEventListener("click",()=>operate('%'));
-dot.addEventListener("click",addDot);
