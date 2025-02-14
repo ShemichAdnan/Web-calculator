@@ -11,7 +11,7 @@ let min=-99999999999999;
 let op;
 let tempOperator;
 
-let greska=false;
+
 let ProvjeraDuzine=()=>{
     if(input.textContent.length>9){
         input.style.fontSize = "40px";
@@ -19,6 +19,7 @@ let ProvjeraDuzine=()=>{
         input.style.fontSize="50px";
     }
 };
+
 let Clear=()=>{
     input.textContent="";
     calculate.textContent="";
@@ -35,7 +36,6 @@ let Del=()=>{
     ProvjeraDuzine();
 };
 let InputNumber=(c)=>{
-    greska=false;
     if(input.textContent.length<maxc){
         input.textContent+=c.textContent;
         ProvjeraDuzine();
@@ -57,6 +57,15 @@ let NumberNegation=()=>{
         input.textContent=input.textContent*-1;
     }    
 }
+
+function fixFloatingPointError(num, precision = 10) {
+    const expected = Math.round(num * 10) / 10;
+    if (Math.abs(num - expected) < Number.EPSILON * 10) {
+        return expected;
+    }
+    return parseFloat(num.toPrecision(precision));
+}
+
 let Calculation=()=>{
     if(number2=="0" && tempOperator=="/"){
         Clear();
@@ -64,21 +73,20 @@ let Calculation=()=>{
     }else if(number1!=null && number2!=null && number1!="" && number2!=""){
         let result;
         if(tempOperator=="+"){
-            result=+number1 + +number2;
+            result=fixFloatingPointError(+number1 + +number2);
         }else if(tempOperator=="-"){
-            result=+number1 - +number2;
+            result=fixFloatingPointError(+number1 - +number2);
         }else if(tempOperator=="*"){
-            result=+number1 * +number2;
+            result=fixFloatingPointError(+number1 * +number2);
         }else if(tempOperator=="/"){
-            result=number1/number2;
+            result=fixFloatingPointError(+number1/+number2);
         }else{
-            result=(+number1/100)* +number2;
+            result=fixFloatingPointError((+number1/100)* +number2);
         }
 
         if(result>max || result<min){
             Clear();
             alert("Previše velik / previše mal broj!");
-            greska=true
         }
         else{
             if(result.toString().length>maxc){
@@ -97,7 +105,8 @@ let Calculation=()=>{
 }
 
 let Operate=(c)=>{
-    if(greska==false){
+    if(input.textContent!="" ||
+        calculate.textContent!=""){
         op=c.textContent;
         Execution();
     }else{
@@ -107,9 +116,6 @@ let Operate=(c)=>{
 }
 
 let Execution=()=>{
-    if(greska==true){
-        return
-    }else{
         if(input.textContent==null || input.textContent==""){
         
             input.textContent="0";
@@ -145,9 +151,7 @@ let Execution=()=>{
             }else{
                 calculate.textContent="";
             }
-        }
-    }
-    
+        }    
 }
-
+Clear();
 
