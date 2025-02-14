@@ -1,41 +1,9 @@
 let number1="";
 let number2="";
 let operator;
-const c=document.querySelector("#c");
-const d=document.querySelector("#del");
-const percent=document.querySelector("#percent");
-const slash=document.querySelector("#slash");
-const seven=document.querySelector("#seven");
-const eight=document.querySelector("#eight");
-const nine=document.querySelector("#nine");
-const asterisk=document.querySelector("#asterisk");
-const four=document.querySelector("#four");
-const five=document.querySelector("#five");
-const six=document.querySelector("#six");
-const minus=document.querySelector("#minus");
-const one=document.querySelector("#one");
-const two=document.querySelector("#two");
-const three=document.querySelector("#three");
-const plus=document.querySelector("#plus");
-const zero=document.querySelector("#zero");
-const dot=document.querySelector("#dot");
-const equal=document.querySelector("#equal");
-const negation=document.querySelector("#negation");
 
 let input=document.querySelector("#input h2");
 let calculate=document.querySelector("#calculate h2");
-
-
-zero.addEventListener("click",()=>{InputNumber(zero.textContent)});
-one.addEventListener("click",()=>{InputNumber(one.textContent)});
-two.addEventListener("click",()=>{InputNumber(two.textContent)});
-three.addEventListener("click",()=>{InputNumber(three.textContent)});
-four.addEventListener("click",()=>{InputNumber(four.textContent)});
-five.addEventListener("click",()=>{InputNumber(five.textContent)});
-six.addEventListener("click",()=>{InputNumber(six.textContent)});
-seven.addEventListener("click",()=>{InputNumber(seven.textContent)});
-eight.addEventListener("click",()=>{InputNumber(eight.textContent)});
-nine.addEventListener("click",()=>{InputNumber(nine.textContent)});
 
 let maxc=15;
 let max=999999999999999;
@@ -43,6 +11,7 @@ let min=-99999999999999;
 let op;
 let tempOperator;
 
+let greska=false;
 let ProvjeraDuzine=()=>{
     if(input.textContent.length>9){
         input.style.fontSize = "40px";
@@ -66,8 +35,9 @@ let Del=()=>{
     ProvjeraDuzine();
 };
 let InputNumber=(c)=>{
+    greska=false;
     if(input.textContent.length<maxc){
-        input.textContent+=c;
+        input.textContent+=c.textContent;
         ProvjeraDuzine();
     }
 };
@@ -108,6 +78,7 @@ let Calculation=()=>{
         if(result>max || result<min){
             Clear();
             alert("Previše velik / previše mal broj!");
+            greska=true
         }
         else{
             if(result.toString().length>maxc){
@@ -126,56 +97,57 @@ let Calculation=()=>{
 }
 
 let Operate=(c)=>{
-    op=c;
-    Execution();
+    if(greska==false){
+        op=c.textContent;
+        Execution();
+    }else{
+        return
+    }
+    
 }
 
 let Execution=()=>{
-    if(input.textContent==null || input.textContent==""){
+    if(greska==true){
+        return
+    }else{
+        if(input.textContent==null || input.textContent==""){
         
-        input.textContent="0";
-        if(tempOperator=="*" || tempOperator=="/"){
-            input.textContent="1";
-        }else if(tempOperator=="%"){
-            input.textContent="100";
+            input.textContent="0";
+            if(tempOperator=="*" || tempOperator=="/"){
+                input.textContent="1";
+            }else if(tempOperator=="%"){
+                input.textContent="100";
+            }
         }
-    }
-
-    if(number1=="" && op!="="){
-        if(input.textContent[input.textContent.length-1]=="."){
-            number1=input.textContent.slice(0,input.textContent.length-1)
-        }
-        else{
-            number1=input.textContent;
-        }
-
-        input.textContent="";
-        tempOperator=op;
-        calculate.textContent=number1+" "+tempOperator;
-    }
-    else{
-        if(input.textContent[input.textContent.length-1]=="."){
-            number2=input.textContent.slice(0,input.textContent.length-1)
+    
+        if(number1=="" && op!="="){
+            if(input.textContent[input.textContent.length-1]=="."){
+                number1=input.textContent.slice(0,input.textContent.length-1)
+            }
+            else{
+                number1=input.textContent;
+            }
+    
+            input.textContent="";
+            tempOperator=op;
+            calculate.textContent=number1+" "+tempOperator;
         }
         else{
-            number2=input.textContent;
-        }
-        Calculation();
-        if(op!="="){
-            Execution();
-        }else{
-            calculate.textContent="";
+            if(input.textContent[input.textContent.length-1]=="."){
+                number2=input.textContent.slice(0,input.textContent.length-1)
+            }
+            else{
+                number2=input.textContent;
+            }
+            Calculation();
+            if(op!="="){
+                Execution();
+            }else{
+                calculate.textContent="";
+            }
         }
     }
+    
 }
 
-c.addEventListener("click",Clear);
-d.addEventListener("click",Del);
-plus.addEventListener("click",()=>Operate('+'));
-minus.addEventListener("click",()=>Operate('-'))
-equal.addEventListener("click",()=>Operate('='));
-asterisk.addEventListener("click",()=>Operate('*'));
-slash.addEventListener("click",()=>Operate('/'));
-percent.addEventListener("click",()=>Operate('%'));
-dot.addEventListener("click",AddDot);
-negation.addEventListener("click",NumberNegation);
+
