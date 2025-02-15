@@ -11,6 +11,7 @@ let min=-99999999999999;
 let op;
 let tempOperator;
 
+const history=document.querySelector("#history")
 
 let ProvjeraDuzine=()=>{
     if(input.textContent.length>9){
@@ -27,6 +28,7 @@ let Clear=()=>{
     number1="";
     number2="";
     tempOperator="";
+    
 };
 let Del=()=>{
     input.textContent=input.textContent.slice(0,input.textContent.length-1)
@@ -97,6 +99,7 @@ let Calculation=()=>{
                 input.textContent=result;
                 ProvjeraDuzine();
             }
+            AddHistory(number1,number2,tempOperator,result)
             number1="";
             number2="";
             tempOperator="";
@@ -153,5 +156,18 @@ let Execution=()=>{
             }
         }    
 }
-Clear();
+let AddHistory=(num1,num2,to,res)=>{
+    const historyBox=document.createElement("div");
+    historyBox.setAttribute("class","historyBox")
+    const displayCalculate=document.createElement("h1")
+    displayCalculate.setAttribute("class","displayCalculate")
+    displayCalculate.textContent=num1 + " "+ to + " " + num2
+    const displayResult=document.createElement("h1")
+    displayResult.setAttribute("class","displayResult")
+    displayResult.textContent="= " + res
 
+    historyBox.appendChild(displayCalculate);
+    historyBox.appendChild(displayResult);
+    history.appendChild(historyBox)  
+}
+Clear();
