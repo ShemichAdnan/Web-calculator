@@ -170,4 +170,23 @@ let AddHistory=(num1,num2,to,res)=>{
     historyBox.appendChild(displayResult);
     history.appendChild(historyBox)  
 }
+let ShowHistory=()=>{
+    const historyButton=document.querySelector("#historyButton")
+    historyButton.style.display="none";
+    
+    const closeButton=document.createElement("div")
+    closeButton.textContent="x";
+    closeButton.style.color="red"
+    closeButton.setAttribute("id","closeButton")
+    history.addEventListener("click",()=>CloseButton())
+    history.appendChild(closeButton);
+    history.setAttribute("id","historyMobile")
+    
+}
+let CloseButton=()=>{
+    const historyButton=document.querySelector("#historyButton")
+    const closeButton=document.querySelector("#closeButton")
+    historyButton.style.display="block";
+    history.setAttribute("id","history")
+}
 Clear();
