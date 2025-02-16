@@ -32,11 +32,19 @@ You can access the calculator online via the following link:
 2. Open `index.html` in your browser
 
 ## 📸 Screenshots
-- **Desktop view**<br>
-<img src="images/desktopView.png" height="250px"><br>
-- **Mobile view**<br>
-<img src="images/mobileView.png" height="250px">
-<img src="images/mobileViewHistory.png" height="250px">
+
+### 🖥️ Desktop View
+<p align="center">
+  <img src="images/desktopView.png" alt="Desktop View" width="80%">
+</p>
+
+---
+
+### 📱 Mobile View
+<p align="center">
+  <img src="images/mobileView.png" alt="Mobile View" height="400px">
+  <img src="images/mobileViewHistory.png" alt="Mobile View History" height="400px">
+</p>
 
 
 ## 👤 Author
