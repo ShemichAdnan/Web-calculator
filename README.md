@@ -32,7 +32,12 @@ You can access the calculator online via the following link:
 2. Open `index.html` in your browser
 
 ## 📸 Screenshots
-<img src="webcalculator.png" height="250px">
+- **Desktop view**<br>
+<img src="images/desktopView.png" height="250px"><br>
+- **Mobile view**<br>
+<img src="images/mobileView.png" height="250px">
+<img src="images/mobileViewHistory.png" height="250px">
+
 
 ## 👤 Author
 - **Adnan Šemić** - [GitHub](https://github.com/ShemichAdnan)
