@@ -169,17 +169,21 @@ let AddHistory=(num1,num2,to,res)=>{
 
     historyBox.appendChild(displayCalculate);
     historyBox.appendChild(displayResult);
+    historyBox.addEventListener("click",()=>ReturnHistory(res));
     history.prepend(historyBox)  
 }
 let ShowHistory=()=>{
     historyButton.setAttribute("id","historyButtonOff");
     const closeButton=document.querySelector("#closeButton")
     closeButton.addEventListener("click",()=>CloseButton())
-    history.setAttribute("id","historyMobile")
-    
+    history.setAttribute("id","historyMobile")  
 }
 let CloseButton=()=>{
     historyButton.setAttribute("id","historyButton");
     history.setAttribute("id","history")
+}
+let ReturnHistory=(res)=>{
+    input.textContent=res
+    CloseButton();
 }
 Clear();

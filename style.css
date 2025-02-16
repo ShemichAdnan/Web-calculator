@@ -129,6 +129,9 @@ button p{
     border-top: #343333 solid 2px;
     width: 100%;
 }
+.historyBox:active{
+    background-color: #20202070;
+}
 .displayCalculate{
     padding: 3px 0 0 0;
     margin: 0;
@@ -148,7 +151,7 @@ button p{
     #historyButton{
         display: none;
     }
-    #closeButton{
+    #history #closeButton{
         display: none;
     }
 }
