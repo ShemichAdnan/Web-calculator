@@ -12,7 +12,7 @@ let op;
 let tempOperator;
 
 const history=document.querySelector("#history")
-
+const historyButton=document.querySelector("#historyButton")
 let ProvjeraDuzine=()=>{
     if(input.textContent.length>9){
         input.style.fontSize = "40px";
@@ -119,6 +119,7 @@ let Operate=(c)=>{
 }
 
 let Execution=()=>{
+    if(input.textContent=="" && calculate.textContent=="") return;
         if(input.textContent==null || input.textContent==""){
         
             input.textContent="0";
@@ -168,25 +169,17 @@ let AddHistory=(num1,num2,to,res)=>{
 
     historyBox.appendChild(displayCalculate);
     historyBox.appendChild(displayResult);
-    history.appendChild(historyBox)  
+    history.prepend(historyBox)  
 }
 let ShowHistory=()=>{
-    const historyButton=document.querySelector("#historyButton")
-    historyButton.style.display="none";
-    
-    const closeButton=document.createElement("div")
-    closeButton.textContent="x";
-    closeButton.style.color="red"
-    closeButton.setAttribute("id","closeButton")
-    history.addEventListener("click",()=>CloseButton())
-    history.appendChild(closeButton);
+    historyButton.setAttribute("id","historyButtonOff");
+    const closeButton=document.querySelector("#closeButton")
+    closeButton.addEventListener("click",()=>CloseButton())
     history.setAttribute("id","historyMobile")
     
 }
 let CloseButton=()=>{
-    const historyButton=document.querySelector("#historyButton")
-    const closeButton=document.querySelector("#closeButton")
-    historyButton.style.display="block";
+    historyButton.setAttribute("id","historyButton");
     history.setAttribute("id","history")
 }
 Clear();

@@ -38,13 +38,14 @@ p{
     position: absolute;
     color: #b1b1b1; 
 }
+#historyButtonOff{
+    display: none;
+}
 #closeButton{
     width: 35px;
     position: absolute;
     color: red;
     margin-left: 310px;
-    display: none;
-
 }
 #buttons{
     display: grid;
@@ -93,9 +94,9 @@ button p{
     height: 70px; 
     color: #dddcdc; 
 }
-#history{
+#history {
     width: 20vw;
-    margin:  5px 0px 5px 50px  ;
+    margin:  5px 0px 5px 50px;
     background-color: rgba(0, 0, 0, 0.8);
     box-shadow: 5px 7px 15px rgb(3, 4, 7);
     border-radius: 20px;
@@ -104,8 +105,10 @@ button p{
     min-width: 280px;
     height: 690px;
     display: flex;
-    flex-direction: column;
-    justify-content: end;
+    flex-direction: column-reverse; 
+    overflow-y: auto; 
+    overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 #historyMobile{
     position: absolute;
@@ -117,8 +120,10 @@ button p{
     width: 350px;
     height: 690px;
     display: flex;
-    flex-direction: column;
-    justify-content: end;
+    flex-direction: column-reverse; 
+    overflow-y: auto; 
+    overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 .historyBox{
     border-top: #343333 solid 2px;
@@ -141,6 +146,9 @@ button p{
 }
 @media (min-width:801px){
     #historyButton{
+        display: none;
+    }
+    #closeButton{
         display: none;
     }
 }
